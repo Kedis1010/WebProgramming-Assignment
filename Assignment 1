@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습 3-2</title>
+<style>
+
+#item {
+	padding : 10px 5px;
+	margin:auto;
+	width:80%;
+}
+
+#container {
+	padding : 10px 20px;
+	margin:auto;
+	margin-top:5%;
+	width: 75%;
+	background-color:orange;
+}
+.todoli {
+	background-color:yellow;
+	margin: 5px 0px;
+	line-height:30px;
+	list-style-type : none
+}
+.delbutton {
+	background-color:transparent;
+	border:transparent;
+	float:right;
+}
+
+#todobutton {
+	width: 15%;
+	padding : 10px 5px;
+	background-color:blue;
+	color:white;
+	white-space:  nowrap;
+}
+</style>
+<script>
+	function addItem(){
+		let todo = document.getElementById("item");
+		let list = document.getElementById("todolist");
+		let listitem = document.createElement("li");
+		let xbtn = document.createElement("button");
+		
+		listitem.className = "todoli";
+		
+		xbtn.className = "delbutton";
+		xbtn.innerText= "X";
+		
+		xbtn.onclick = function(e){
+			let pnode = e.target.parentNode;
+			list.removeChild(pnode);
+		}
+		
+		if (todo.value==0)
+			{
+			}
+		else
+			{
+			listitem.innerText= todo.value;
+			listitem.appendChild(xbtn);
+			list.appendChild(listitem);
+			
+			todo.value="";
+			todo.focus();
+			}
+
+	}
+</script>
+</head>
+<body>
+	<div id = "container">
+		<h2>My ToDo App</h2>
+		<hr>
+		<div class = "input-group">
+			<input id = "item" class="form-control" type = "text" placeholder="할일을 입력하세요..">
+			<button type="button" id="todobutton" onclick="addItem()">할일 추가</button>
+		</div>
+		<hr>
+		<ul id="todolist" class="list-group"></ul>
+	</div>
+</body>
+</html>
